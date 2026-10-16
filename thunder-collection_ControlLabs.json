@@ -1,0 +1,263 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "ControlLabs - Taller REST TypeScript",
+  "collectionId": "controllabs-collection-001",
+  "dateExported": "2026-10-16",
+  "version": "1.1",
+  "folders": [
+    {
+      "_id": "fld_health",
+      "name": "0. Health & Diagnóstico",
+      "containerId": "",
+      "created": "2026-10-16"
+    },
+    {
+      "_id": "fld_usuarios",
+      "name": "1. Módulo Gestión de Usuarios",
+      "containerId": "",
+      "created": "2026-10-16"
+    },
+    {
+      "_id": "fld_ambientes",
+      "name": "2. Módulo Ambientes (Labs / Salas)",
+      "containerId": "",
+      "created": "2026-10-16"
+    },
+    {
+      "_id": "fld_equipos",
+      "name": "3. Módulo Equipos (Hardware / Activos)",
+      "containerId": "",
+      "created": "2026-10-16"
+    },
+    {
+      "_id": "fld_novedades",
+      "name": "4. Módulo Novedades (Incidencias)",
+      "containerId": "",
+      "created": "2026-10-16"
+    },
+    {
+      "_id": "fld_dashboard",
+      "name": "5. Módulo Dashboard & Analítica",
+      "containerId": "",
+      "created": "2026-10-16"
+    }
+  ],
+  "requests": [
+    {
+      "_id": "req_health",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_health",
+      "name": "Verificar Estado de la API (Healthcheck)",
+      "url": "http://localhost:3000/api/v1/health",
+      "method": "GET"
+    },
+    {
+      "_id": "req_users_list",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_usuarios",
+      "name": "1.1 Listar todos los usuarios",
+      "url": "http://localhost:3000/api/v1/usuarios",
+      "method": "GET"
+    },
+    {
+      "_id": "req_users_create",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_usuarios",
+      "name": "1.2 Registrar nuevo perfil de usuario",
+      "url": "http://localhost:3000/api/v1/usuarios",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Mariana Rios\",\n  \"email\": \"mariana.rios@sena.edu.co\",\n  \"rol\": \"docente\",\n  \"password\": \"docentePass2026!\",\n  \"documento\": \"1055443322\"\n}"
+      }
+    },
+    {
+      "_id": "req_users_get_id",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_usuarios",
+      "name": "1.3 Consultar detalles de usuario por ID",
+      "url": "http://localhost:3000/api/v1/usuarios/usr-1",
+      "method": "GET"
+    },
+    {
+      "_id": "req_users_patch",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_usuarios",
+      "name": "1.4 Actualizar parcialmente rol/estado/contraseña (PATCH)",
+      "url": "http://localhost:3000/api/v1/usuarios/usr-3",
+      "method": "PATCH",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"rol\": \"docente\",\n  \"password\": \"nuevaClaveSuperSegura2026\"\n}"
+      }
+    },
+    {
+      "_id": "req_users_delete_logico",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_usuarios",
+      "name": "1.5 Eliminar lógicamente un usuario (DELETE)",
+      "url": "http://localhost:3000/api/v1/usuarios/usr-3",
+      "method": "DELETE"
+    },
+    {
+      "_id": "req_amb_list",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_ambientes",
+      "name": "2.1 Listar todos los espacios físicos y laboratorios",
+      "url": "http://localhost:3000/api/v1/ambientes",
+      "method": "GET"
+    },
+    {
+      "_id": "req_amb_create",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_ambientes",
+      "name": "2.2 Crear ambiente con capacidad y ubicación",
+      "url": "http://localhost:3000/api/v1/ambientes",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"codigo\": \"LAB-301\",\n  \"nombre\": \"Laboratorio de Ciberseguridad y Forense Digital\",\n  \"capacidad\": 20,\n  \"ubicacion\": \"Bloque D - Piso 1\",\n  \"descripcion\": \"Ambiente aislado para prácticas de hacking ético y pentesting.\"\n}"
+      }
+    },
+    {
+      "_id": "req_amb_get_id",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_ambientes",
+      "name": "2.3 Consultar ambiente por ID",
+      "url": "http://localhost:3000/api/v1/ambientes/amb-1",
+      "method": "GET"
+    },
+    {
+      "_id": "req_amb_patch",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_ambientes",
+      "name": "2.4 Actualizar atributos específicos vía PATCH (ej. capacidad/estado)",
+      "url": "http://localhost:3000/api/v1/ambientes/amb-1",
+      "method": "PATCH",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"capacidad\": 35,\n  \"estadoOperativo\": \"disponible\"\n}"
+      }
+    },
+    {
+      "_id": "req_eq_list",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_equipos",
+      "name": "3.1 Listar todos los equipos existentes",
+      "url": "http://localhost:3000/api/v1/equipos",
+      "method": "GET"
+    },
+    {
+      "_id": "req_eq_filter_ambiente",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_equipos",
+      "name": "3.2 Filtrar equipos por ambiente específico",
+      "url": "http://localhost:3000/api/v1/equipos?ambienteId=amb-1",
+      "method": "GET"
+    },
+    {
+      "_id": "req_eq_create",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_equipos",
+      "name": "3.3 Registrar nuevo equipo vinculado a un ambiente",
+      "url": "http://localhost:3000/api/v1/equipos",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Generador de Señales Arbitrarias Siglent\",\n  \"serial\": \"SN-SGL-7720\",\n  \"placaInventario\": \"SENA-INV-005\",\n  \"categoria\": \"Instrumento Medición\",\n  \"ambienteId\": \"amb-1\",\n  \"estadoTecnico\": \"operativo\",\n  \"ubicacion\": \"Mesa 2 - Puesto A\"\n}"
+      }
+    },
+    {
+      "_id": "req_eq_get_id",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_equipos",
+      "name": "3.4 Consultar detalle de equipo por ID",
+      "url": "http://localhost:3000/api/v1/equipos/eq-1",
+      "method": "GET"
+    },
+    {
+      "_id": "req_eq_patch",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_equipos",
+      "name": "3.5 Actualizar estado técnico o ubicación vía PATCH",
+      "url": "http://localhost:3000/api/v1/equipos/eq-2",
+      "method": "PATCH",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"estadoTecnico\": \"en mantenimiento\",\n  \"ubicacion\": \"Taller de Soporte Técnico - Mesa 1\"\n}"
+      }
+    },
+    {
+      "_id": "req_nov_list",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_novedades",
+      "name": "4.1 Consultar historial completo de incidencias reportadas",
+      "url": "http://localhost:3000/api/v1/novedades",
+      "method": "GET"
+    },
+    {
+      "_id": "req_nov_create",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_novedades",
+      "name": "4.2 Crear reporte de novedad asociado a equipo o ambiente",
+      "url": "http://localhost:3000/api/v1/novedades",
+      "method": "POST",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"titulo\": \"Falla en fuente de poder de Switch\",\n  \"descripcion\": \"El switch del laboratorio LAB-101 se reinicia repentinamente.\",\n  \"prioridad\": \"critica\",\n  \"equipoId\": \"eq-2\",\n  \"ambienteId\": \"amb-1\",\n  \"reportadoPor\": \"Laura Gómez\"\n}"
+      }
+    },
+    {
+      "_id": "req_nov_get_id",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_novedades",
+      "name": "4.3 Consultar detalle de incidencia por ID",
+      "url": "http://localhost:3000/api/v1/novedades/nov-1",
+      "method": "GET"
+    },
+    {
+      "_id": "req_nov_patch",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_novedades",
+      "name": "4.4 Actualizar parcialmente estado de novedad vía PATCH",
+      "url": "http://localhost:3000/api/v1/novedades/nov-1",
+      "method": "PATCH",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"estado\": \"en proceso\",\n  \"observaciones\": \"El técnico revisó el equipo y ordenó el cambio del fusible interno.\"\n}"
+      }
+    },
+    {
+      "_id": "req_dash_get",
+      "colId": "controllabs-collection-001",
+      "containerId": "fld_dashboard",
+      "name": "5.1 Obtener resumen consolidado y contadores globales (Dashboard)",
+      "url": "http://localhost:3000/api/v1/dashboard",
+      "method": "GET"
+    }
+  ]
+}

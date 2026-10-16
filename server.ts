@@ -1,9 +1,9 @@
-// 📁 server.js (Punto de entrada HTTP)
-require('dotenv').config();
-const app = require('./src/app');
+
+import 'dotenv/config';
+import app from './src/app';
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor ControlLabs corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor ControlLabs corriendo en http://localhost:${PORT}`);
 });

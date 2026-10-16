@@ -1,19 +1,12 @@
-// 📁 src/app.js (Configuración de Express)
-const express = require('express');
-const cors = require('cors');
+
+import express from 'express';
+import cors from 'cors';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Health Check Endpoint
-app.get('/api/v1/health', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'ControlLabs API operando correctamente',
-    timestamp: new Date().toISOString()
-  });
-});
+// Aquí van las rutas de la API.
 
-module.exports = app;
+export default app;

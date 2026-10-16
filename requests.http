@@ -1,0 +1,151 @@
+### ===================================================
+### ControlLabs REST API - Pruebas Rápidas de Endpoints
+### ===================================================
+@baseUrl = http://localhost:3000/api/v1
+
+### 0. Healthcheck
+GET {{baseUrl}}/health
+
+### ===================================================
+### 1. MÓDULO: GESTIÓN DE USUARIOS
+### ===================================================
+
+### 1.1 Listar todos los usuarios
+GET {{baseUrl}}/usuarios
+
+### 1.2 Registrar un nuevo usuario (estudiante, docente, administrador)
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "nombre": "Mariana Rios",
+  "email": "mariana.rios@sena.edu.co",
+  "rol": "docente",
+  "password": "docentePass2026!",
+  "documento": "1055443322"
+}
+
+### 1.3 Consultar detalles de usuario por ID
+GET {{baseUrl}}/usuarios/usr-1
+
+### 1.4 Actualización Parcial (PATCH) - Rol y Contraseña
+PATCH {{baseUrl}}/usuarios/usr-3
+Content-Type: application/json
+
+{
+  "rol": "docente",
+  "password": "nuevaClaveSuperSegura2026"
+}
+
+### 1.5 Eliminación Lógica (DELETE / Soft Delete)
+DELETE {{baseUrl}}/usuarios/usr-3
+
+
+### ===================================================
+### 2. MÓDULO: GESTIÓN DE AMBIENTES (LABS / SALAS)
+### ===================================================
+
+### 2.1 Listar todos los ambientes y laboratorios
+GET {{baseUrl}}/ambientes
+
+### 2.2 Crear nuevo ambiente (capacidad y ubicación)
+POST {{baseUrl}}/ambientes
+Content-Type: application/json
+
+{
+  "codigo": "LAB-301",
+  "nombre": "Laboratorio de Ciberseguridad y Forense Digital",
+  "capacidad": 20,
+  "ubicacion": "Bloque D - Piso 1",
+  "descripcion": "Ambiente aislado para prácticas de hacking ético."
+}
+
+### 2.3 Consultar ambiente por ID
+GET {{baseUrl}}/ambientes/amb-1
+
+### 2.4 Actualización Parcial (PATCH) - Capacidad y Estado Operativo
+PATCH {{baseUrl}}/ambientes/amb-1
+Content-Type: application/json
+
+{
+  "capacidad": 35,
+  "estadoOperativo": "disponible"
+}
+
+
+### ===================================================
+### 3. MÓDULO: GESTIÓN DE EQUIPOS (HARDWARE / ACTIVOS)
+### ===================================================
+
+### 3.1 Listar todos los equipos
+GET {{baseUrl}}/equipos
+
+### 3.2 Filtrar equipos por ambiente específico (?ambienteId=...)
+GET {{baseUrl}}/equipos?ambienteId=amb-1
+
+### 3.3 Registrar equipo vinculado a un ambiente
+POST {{baseUrl}}/equipos
+Content-Type: application/json
+
+{
+  "nombre": "Generador de Señales Arbitrarias Siglent",
+  "serial": "SN-SGL-7720",
+  "placaInventario": "SENA-INV-005",
+  "categoria": "Instrumento Medición",
+  "ambienteId": "amb-1",
+  "estadoTecnico": "operativo",
+  "ubicacion": "Mesa 2 - Puesto A"
+}
+
+### 3.4 Consultar equipo por ID
+GET {{baseUrl}}/equipos/eq-1
+
+### 3.5 Actualización Parcial (PATCH) - Estado técnico o ubicación
+PATCH {{baseUrl}}/equipos/eq-2
+Content-Type: application/json
+
+{
+  "estadoTecnico": "en mantenimiento",
+  "ubicacion": "Taller de Soporte Técnico - Mesa 1"
+}
+
+
+### ===================================================
+### 4. MÓDULO: GESTIÓN DE NOVEDADES (INCIDENCIAS)
+### ===================================================
+
+### 4.1 Historial de incidencias
+GET {{baseUrl}}/novedades
+
+### 4.2 Reportar novedad vinculada a equipo o ambiente
+POST {{baseUrl}}/novedades
+Content-Type: application/json
+
+{
+  "titulo": "Falla en fuente de poder de Switch",
+  "descripcion": "El switch del laboratorio LAB-101 se reinicia repentinamente.",
+  "prioridad": "critica",
+  "equipoId": "eq-2",
+  "ambienteId": "amb-1",
+  "reportadoPor": "Laura Gómez"
+}
+
+### 4.3 Consultar novedad por ID
+GET {{baseUrl}}/novedades/nov-1
+
+### 4.4 Actualización Parcial (PATCH) - Estado de la novedad
+PATCH {{baseUrl}}/novedades/nov-1
+Content-Type: application/json
+
+{
+  "estado": "en proceso",
+  "observaciones": "El técnico revisó el equipo y ordenó el cambio del fusible interno."
+}
+
+
+### ===================================================
+### 5. MÓDULO: DASHBOARD (PANEL DE CONTROL Y ANALÍTICA)
+### ===================================================
+
+### 5.1 Resumen consolidado con contadores globales
+GET {{baseUrl}}/dashboard
